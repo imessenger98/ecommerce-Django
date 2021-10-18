@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>E Store - eCommerce HTML Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="eCommerce HTML Template Free Download" name="keywords">
+        <meta content="eCommerce HTML Template Free Download" name="description">
+
+        <!-- Favicon -->
+        <link href="static/img/favicon.ico" rel="icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="static/lib/slick/slick.css" rel="stylesheet">
+        <link href="static/lib/slick/slick-theme.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="static/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Top bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <i class="fa fa-envelope"></i>
+                        support@email.com
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fa fa-phone-alt"></i>
+                        +012-345-6789
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top bar End -->
+        
+        <!-- Nav Bar Start -->
+        <div class="nav">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto">
+                            <a href="{% url 'Home' %}" class="nav-item nav-link ">Home</a>
+                            <a href="{% url 'productdetials' %}" class="nav-item nav-link">Products</a>
+                            <!-- <a href="{% url 'productdetials' %}" class="nav-item nav-link">Product Detail</a> -->
+                            <a href="{% url 'viewcart' %}" class="nav-item nav-link">Cart</a>
+                            <a href="{% url 'myaccount' %}" class="nav-item nav-link">My Account</a>
+                            <a href="{% url 'wishlist' %}" class="nav-item nav-link">Wishlist</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                                <div class="dropdown-menu">
+                                    <a href="{% url 'register'  %}" class="dropdown-item">Login & Register</a>
+                                    <a href="contact.html" class="dropdown-item">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="navbar-nav ml-auto">
+                            <a href="{% url 'register'  %}" class="dropdown-item">login/Register</a>
+                            <a href="{% url 'signout'  %}" class="dropdown-item">logout</a>
+                                
+                              
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Nav Bar End -->      
+        
+        <!-- Bottom Bar Start -->
+        <div class="bottom-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <!-- <div class="logo">
+                            <a href="index.html">
+                                <img src="static/img/logo.png" alt="Logo">
+                            </a>
+                        </div> -->
+                    </div>
+                    <div id="search" class="col-md-6">
+                        <form action="{% url 'searchwith' %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="search">
+                                <input type="text" name="Product_Name" placeholder="Search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </div> 
+                        </form>
+                        
+                    </div>
+                    <div class="col-md-3">
+                        <div class="user">
+                            <a href="{% url 'wishlist'  %}" class="btn wishlist">
+                                <span> {{wishlist}}</span>
+
+                                <i class="fa fa-heart"></i>
+                            </a>
+                            <a href="{% url 'viewcart'  %}" class="btn cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span> {{addtocart}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Bar End --> 
+        
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'Home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                    <li class="breadcrumb-item active">My Account</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+        
+        <!-- My Account Start -->
+        <div class="my-account">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
+                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Orders</a>
+                            <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>address</a>
+                            <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Account Details</a>
+                            <a class="nav-link" href="{% url 'signout' %}"><i class="fa fa-sign-out-alt"></i>Logout</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col-md-6 justify-content-center align-items-center text-center">  
+                                            <h4 class="display-5">Dashboard</h4>
+                                            <img class="img-fluid img-thumbnail " style="width: 200px;height: 200px;" src="media/{{request.user.pic}}" alt="pic"  ><br>
+                                            <h2 class="display-6">{{request.user.em}} </h2>
+                                            <p><b>Name:</b>   {{request.user.first_name}} {{request.user.last_name}}</p>                                            
+                                            <p><b>Adress:</b> {{request.user.address}}</p>
+                                            <p><b>city:</b> {{request.user.city}}</p>
+                                            <p><b>postcode:</b> {{request.user.postcode}}</p>
+                                            <p><b>phone:</b> {{request.user.phone}}</p>
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+                            <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+                                <table style="margin: 20px;"   class="table table-dark ">
+      
+                                </div>
+                                <thead>
+                                  <br>
+                                  <tr>
+                                    <th scope="col">order_date</th>
+                                    <th scope="col">vendor_id</th>
+                                    <th scope="col">order_total</th>
+                                    <th scope="col">payment_method</th>
+                                    <th scope="col">status</th>
+                                    <th scope="col">Is_delivered</th>
+                                  
+                      
+                      
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for i in user %}
+                                  
+                                  <tr>
+                                    <td>
+                                      {{i.order_date}}
+                                  </td>
+                                    <td>
+                                        {{i.vendor_id}}
+                                    </td>
+                                    <td>
+                                        {{i.order_total}}
+                                    </td>
+                                    <td>
+                                      {{i.payment_method}}
+                                  </td>
+                                
+                                <td>
+                                    {{i.status}}
+                                </td>
+                                <td>
+                                    {{i.Is_delivered}}
+                                </td>
+
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="address-tab" role="tabpanel" aria-labelledby="address-nav">
+                                <h4>Address</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>Payment Address</h5>
+                                        <p>{{request.user.address}}</p>
+                                        <p>Mobile: {{request.user.phone}}</p>
+                                        <button class="btn">Edit Address</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5>Shipping Address</h5>
+                                        <p>{{request.user.address}}</p>
+                                        <p>Mobile: {{request.user.phone}}</p>
+                                        <button class="btn">Edit Address</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
+                                <h4>Account Details</h4>
+
+                                <form action="{% url 'update' %}" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="row text-center">
+                                    <div class="col-md-6">
+                                        <input class="form-control"  type="text" name="FName" value= {{request.user.first_name}} placeholder="First Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="text" name="LName" value= {{request.user.last_name}} placeholder="Last Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="text" name="Mobile" value= {{request.user.phone}} placeholder="Mobile">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control"  type="text" name="Email" value= {{request.user.email}} placeholder="Email">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="Adress" value= {{request.user.address}} type="text" placeholder="Address">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" name="City" value= {{request.user.city}} type="text" placeholder="city">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" name="Postcode" value= {{request.user.postcode}} type="text" placeholder="postcode">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="">current photo</label><br>
+                                        <img class="img-fluid border" width="200px" height="200px" src="media/{{request.user.pic}}" alt="alternative image anu">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <br>
+                                        <label for="">update photo</label><br>
+                                        <input value= "media/{{request.user.pic}}"   style="padding-top: 10px;" name="image" type="file">
+                                    </div>
+                                    <div style="padding-top: 20px;" class="col-md-12">
+                                        <button type="submit" class="btn">Update Account</button>
+                                        <br><br>
+                                    </div>
+                                </form>
+                                </div>
+                                <h4>Password change</h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input class="form-control"   type="text" placeholder="Current Password">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="text" placeholder="New Password">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="text" placeholder="Confirm Password">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn">Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- My Account End -->
+        
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h2>Get in Touch</h2>
+                            <div class="contact-info">
+                                <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
+                                <p><i class="fa fa-envelope"></i>email@example.com</p>
+                                <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h2>Follow Us</h2>
+                            <div class="contact-info">
+                                <div class="social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                    <a href=""><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h2>Company Info</h2>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms & Condition</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h2>Purchase Info</h2>
+                            <ul>
+                                <li><a href="#">Pyament Policy</a></li>
+                                <li><a href="#">Shipping Policy</a></li>
+                                <li><a href="#">Return Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+               
+            </div>
+        </div>
+        <!-- Footer End -->
+        
+        <!-- Footer Bottom Start -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 copyright">
+                        <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
+                    </div>
+
+                    <div class="col-md-6 template-by">
+                        <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom End -->       
+        
+        <!-- Back to Top -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="static/lib/easing/easing.min.js"></script>
+        <script src="static/lib/slick/slick.min.js"></script>
+        
+        <!-- Template Javascript -->
+        <script src="static/js/main.js"></script>
+    </body>
+</html>

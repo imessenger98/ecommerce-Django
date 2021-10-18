@@ -1,0 +1,106 @@
+{% extends 'dasboardindex.html' %}
+{% block content %}
+{% load static %}
+<body>
+    <br>
+    <div class="darkcol container border bg-black ">
+        <form action="{% url 'vendor' %}" method="POST" >
+            {% csrf_token %}
+
+        <div class="row justify-content-center align-item-center text-center">
+            <div class="col-md-12">
+                <h2 style="padding-top: 30px;padding-bottom: 30px;color: white;" class="display-5 text-center"><u>Add Vendor </u> </h2>
+
+            </div>
+            <div class="col-md-6">
+                <label  >branch</label>
+                <input class="form-control" type="text" placeholder="branch" name="branch" id="">
+              </div>
+              <div class="col-md-6">
+                <label  >vendor_name</label>
+                <input class="form-control" type="text" placeholder="vendor_name" name="vendor_name" id="">
+              </div>
+              <div class="col-md-6">
+                <label  >phone_number</label>
+                <input class="form-control" type="text" placeholder="phone_number" name="phone_number" id="">
+              </div>
+              <div class="col-md-6">
+                <label  >email</label>
+                <input class="form-control" type="text" placeholder="email" name="email" id="">
+              </div>
+              <div class="col-md-6">
+                <label  >username</label>
+                <input class="form-control" type="text" placeholder="username" name="username" id="">
+              </div>
+              <div class="col-md-6">
+                <label  >password</label>
+                <input class="form-control" type="text" placeholder="password" name="password" id="">
+              </div>
+              <div class="col-md-12" >
+                <label  >address</label>
+                <input class="form-control" type="text" placeholder="address" name="address" id="">
+              </div>
+              <div class="col-md-6">
+                <input style="margin: 30px;" class="btn btn-dark" type="submit" value="submit">
+              </div>
+        </div>
+    </form>
+    </div>
+    <div  class="container " >
+        <div class="row justify-content-center align-items-center text-center"  style="width: 100%;height: 100%;">
+    
+    
+          <table style="color: white !important; " class="table table-dark ">
+            <h2 style="padding-top: 30px;padding-bottom: 30px;" class="display-5 text-center"><u>Vendor Detials</u> </h2>
+              
+                <thead>
+                  <tr>
+                    <th scope="col">branch</th>
+                    <th scope="col">vendor_name</th>
+                    <th scope="col">phone_number</th>
+                    <th scope="col">email</th>
+                    <th scope="col">username</th>
+                    <th scope="col">password</th>
+                    <th scope="col">address</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in vendor %}  
+                  <tr>
+                    <td>
+                      {{i.branch}}
+                  </td>
+                    <td>
+                        {{i.vendor_name}}
+                    </td>
+                    <td>
+                        {{i.phone_number}}
+                    </td>
+                    <td>
+                        {{i.email}}
+                    </td>                
+                    <td>
+                        {{i.username}}
+                    </td>                
+                    <td>
+                        {{i.password}}
+                    </td>
+                    <td>
+                        {{i.address}}
+                    </td>
+                    
+                    <td>
+                      <a style="text-decoration: none; color: white;" href="#"><i style="color: rgb(255, 255, 255);" class="fa fa-pencil" aria-hidden="true"></i> &nbsp; Update</a>
+                    </td>
+                    <td>
+                      <a style="text-decoration: none; color: white;" href="#"><i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i>&nbsp; Delete</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <br>
+        </div>
+{% endblock %}

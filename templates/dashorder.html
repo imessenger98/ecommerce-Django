@@ -1,0 +1,202 @@
+{% extends 'dasboardindex.html' %}
+{% block content %}
+<div  class="container" >
+
+  <div style="padding-top: 30px;padding-bottom: 30px;" class="row justify-content-center align-items-center text-center" >
+    <div class="darkcol col-12 border">
+      <h2 style="padding-top: 30px;padding-bottom: 30px; color: white;" class="display-5 text-center"><u>Add Orders</u> </h2>
+      <form action="{% url 'viewOrder' %}" method="post">
+        {% csrf_token %}
+        <div class="row justify-content-center align-items-center text-center">
+          <div class="col-md-6">
+            <label >Product_Name</label>
+            <select class="form-control" name="Product_Name" id="cars">
+              <option selected>choose the Product_Name</option>
+  
+              {% for i in pr %}
+                <option value="{{i.Product_Name}}">{{i.Product_Name}}</option>
+                {% endfor %}
+            </select> 
+          </div>
+          <div class="col-md-6">
+            <label  >quantity</label>
+            <input class="form-control" type="number" placeholder="quantity" name="quantity" id="">
+          </div>
+        <div class="col-md-6">
+          <label >order_date</label>
+          <input class="form-control" type="date" id="birthday" name="order_date">
+         </div>
+          <div class="col-md-6">
+            <label >customer_id</label>
+            <select class="form-control" name="Product_Category" id="cars">
+              <option selected>choose the customer_id</option>
+  
+              {% for i in user %}
+                <option value="{{i.email}}">{{i.email}}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label >Vender_id</label>
+            <select class="form-control" name="Vender" >
+              <option >choose the Vender</option>
+              {% for i in vendors %}
+                <option value="{{i.username}}" >{{i.username}}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label  >order_total</label>
+            <input disabled class="form-control" type="text" placeholder="order_total" name="order_total" id="">
+          </div>
+          <div class="col-md-6">
+            <label  >payment_method</label>
+            <input class="form-control" type="text" placeholder="payment_method" name="payment_method" id="">
+          </div>
+          <div class="col-md-6">
+            <label  >payment_status</label>
+            <select class="form-control" name="payment_status" id="cars">
+              <option selected>payment_status</option>
+              <option value="True">Completed</option>
+              <option value="False">Incomplete</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label >delivery_date</label>
+            <input class="form-control" type="date" id="birthday" name="delivery_date">
+           </div>
+           <div class="col-md-6">
+            <label  >status</label>
+            <select class="form-control" name="status" id="cars">
+              <option selected>Order Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed</option>
+              <option value="Ordered">Ordered</option>
+              <option value="Accepted">Accepted</option> 
+              <option value="Out for Delivery">Out for Delivery</option>
+              <option value="Order Cancel">Order Cancel</option>
+              <option value="Order Cancel">Order Cancel</option>
+               <option value="Delivered">Delivered</option>
+              <option value="Added to Cart">Added to Cart</option>
+               <option value="Assigned to Driver">Assigned to Driver</option>
+            </select>
+          </div>
+          <div class="col-md-12">
+            <br>
+            <input type="checkbox" value="True" name="Is_delivered" id="">
+            <label for="">Is_delivered</label>
+          </div>
+          <div style="margin: 20px;" class="row justify-content-center align-items-center text-center">
+            <div class="col-md -12">
+              <input type="submit" class="btn btn-primary" value="submit">
+            </div>
+          </div>
+       </div>
+      </form>
+    </div>
+    <div class="col-12">
+      <h2 style="padding-top: 30px;padding-bottom: 30px;" class="display-5 text-center"><u> Added Order</u> </h2>
+    </div>
+    <div class="col-md-3">
+      <form action="{% url 'filterbyid' %}" method="POST">
+        {% csrf_token %}
+        <input  class="form-control" type="text" placeholder="Filter order by status" name="searchorder"/>
+        <!-- <br>
+        <button class="btn btn-dark" type="submit">Submit</button>
+        <br> -->
+    </div>
+
+    <div class="col-md-3">
+        {% csrf_token %}
+        <input class="form-control" type="text" name="filterbyid" placeholder="Filter by CustomerID"/>
+        <!-- <br>
+        <button class="btn btn-dark" type="submit">Submit</button>
+        <br> -->
+    </div>
+
+    <div class="col-md-4">
+        {% csrf_token %}
+        <input class="form-control" type="date" placeholder="Filter by Delivery Date" name="filterordate"/>
+        
+    </div>
+ 
+    <div class="col-2">
+      <button class="btn btn-success" type="submit">Submit</button>
+
+      <a class="btn btn-danger" href="{% url 'viewOrder' %}">reset</a>
+      </form>
+    </div>
+    <br><br>
+    <table style="margin: 20px;"   class="table table-dark ">
+      
+          </div>
+          <thead>
+            <br>
+            <tr>
+              <th scope="col">order_date</th>
+              <th scope="col">customer_id</th>
+              <th scope="col">vendor_id</th>
+              <th scope="col">order_total</th>
+              <th scope="col">payment_method</th>
+              <th scope="col">payment_status</th>
+              <th scope="col">delivery_date</th>
+              <th scope="col">status</th>
+              <th scope="col">Is_delivered</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+
+
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in product %}
+            
+            <tr>
+              <td>
+                {{i.order_date}}
+            </td>
+              <td>
+                  {{i.customer_id}}
+              </td>
+              <td>
+                  {{i.vendor_id}}
+              </td>
+              <td>
+                  {{i.order_total}}
+              </td>
+              <td>
+                {{i.payment_method}}
+            </td>
+            <td>
+              {{i.payment_status}}
+          </td>
+          <td>
+              {{i.delivery_date}}
+          </td>
+          <td>
+              {{i.status}}
+          </td>
+          <td>
+              {{i.Is_delivered}}
+          </td>
+           
+              <td>
+                <a style="text-decoration: none; color: white;" href="#"><i style="color: rgb(255, 255, 255);" class="fa fa-pencil" aria-hidden="true"></i> &nbsp; Update</a>
+              </td>
+              <td>
+                <a style="text-decoration: none; color: white;" href="#"><i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i>&nbsp; Delete</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <br>
+       <div>
+           <style>
+               .darkcol,table th,table td{
+                   color: white !important;
+                   background-color: black;
+               }
+           </style>
+    {% endblock %}

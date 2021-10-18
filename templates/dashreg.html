@@ -1,0 +1,138 @@
+{% extends 'dasboardindex.html' %}
+{% block content %}
+<br>
+<div class="container ">
+    <div class=" darkcol border register-form">
+        <form action="{% url 'addcustomer' %}" method="POST" enctype="multipart/form-data">
+            <div class="col-12 text-center ">
+                <h2 style="padding-top: 30px;padding-bottom: 30px;" class="display-5 text-center"><u>Add Customer</u> </h2>
+            </div>
+        <div class="row">
+            
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <label>First Name</label>
+                    <input class="form-control" name="FName" type="text" placeholder="First Name">
+                </div>
+                <div class="col-md-6">
+                    <label>Last Name</label>
+                    <input class="form-control" type="text"  name="LName" placeholder="Last Name">
+                </div>
+                <div class="col-md-6">
+                    <label>E-mail</label>
+                    <input class="form-control" type="text" name="Email" placeholder="E-mail">
+                </div>
+                <div class="col-md-6">
+                    <label>Mobile No</label>
+                    <input class="form-control" name="Mobile" type="text" placeholder="Mobile No">
+                </div>
+                <div class="col-md-12 " >
+                <label>Adress</label>
+                <input class="form-control" rows="3" name="Adress" type="text" placeholder="Adress">
+                </div>
+                <div class="col-md-6 " >
+                    <label>city</label>
+                    <input class="form-control"  name="City" type="text" placeholder="Adress">
+                </div>
+                <div class="col-md-6 " >
+                    <label>postcode</label>
+                    <input class="form-control"  name="Postcode" type="number" placeholder="Postcode">
+                </div>  
+                <div class="col-md-6">
+                    <label>Password</label>
+                    <input class="form-control" name="Password" type="text" placeholder="Password">
+                </div>
+                <div class="col-md-6">
+                    <label>Retype Password</label>
+                    <input class="form-control" type="password" placeholder="Password">
+                </div>
+                <div class="col-md-6">
+                    <label>profile pic</label>
+                    <input   style="padding-top: 10px;" name="image" type="file">
+                </div>
+                <div class="col-md-6">
+                    <label>role</label>
+                    <select class="form-control" name="role" id="cars">
+                        <option selected>choose the role</option>
+                        <option value="admin">admin</option>
+                        <option value='customer'>customer</option>
+                        <option value='driver'>driver</option>
+
+                       
+                      </select>
+                </div>
+
+                <br>
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+</div>
+
+<div  class="container" >
+    <div class="row justify-content-center align-items-center text-center"  style="width: 100%;height: 100%;">
+
+
+      <table style="color: white !important; " class="table table-dark ">
+        <h2 style="padding-top: 30px;padding-bottom: 30px;" class="display-5 text-center"><u>Customer Detials</u> </h2>
+          
+            <thead>
+              <tr>
+                <th scope="col">first_name</th>
+                <th scope="col">last_name</th>
+                <th scope="col">email</th>
+                <th scope="col">phone</th>
+                <th scope="col">role</th>
+                <th scope="col">city</th>
+                <th scope="col">postcode</th>
+                <th scope="col">pic</th>
+                <th scope="col">address</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in regduser %}  
+              <tr>
+                <td>
+                  {{i.first_name}}
+              </td>
+                <td>
+                    {{i.last_name}}
+                </td>
+                <td>
+                    {{i.email}}
+                </td>
+                <td>
+                    {{i.phone}}
+                </td>                
+                <td>
+                    {{i.role}}
+                </td>                
+                <td>
+                    {{i.city}}
+                </td>
+                <td>
+                    {{i.postcode}}
+                </td>
+                <td>
+                    <img   src="media/{{i.pic}}" alt="image anu" style="height: 60px;width: 60px;" >
+                    
+                </td>
+                <td>
+                    {{i.address}}
+                </td>
+                <td>
+                  <a style="text-decoration: none; color: white;" href="#"><i style="color: rgb(255, 255, 255);" class="fa fa-pencil" aria-hidden="true"></i> &nbsp; Update</a>
+                </td>
+                <td>
+                  <a style="text-decoration: none; color: white;" href="#"><i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i>&nbsp; Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br>
+    </div>
+    {% endblock %}

@@ -1,0 +1,12 @@
+,id,Product_Name,Product_Image,Product_Discription,Product_Price,Product_Stock,Product_Stock_Status,Product_Category_id,product_vendor_id
+0,6,hp omen 16,download (1).jfif,hp omen 16 is a laptop,10000,45878,False,1,3
+1,8,hp omen 15,omen.jfif,hp omen 15 is a laptop,100000,0,False,1,2
+2,10,hp paviolion,pavilion.jfif,hp omen 16 is a laptop,600000,197,True,1,2
+3,12,Inspiron 3891 Desktop,download (2).jfif,Desktop,20000,197,True,2,1
+4,13,LENOVO,download (3).jfif,Desktop,30000,3996,True,2,2
+5,15,hp omen 15,omen_41HbP9p.jfif,laptop,232423,343,True,1,4
+6,16,boat flash watch,boat.jfif,boat flash watch is a watch,10000,200,True,3,3
+7,17,snmsung galaxy watch 4,images (2)_3tdmOtj.jfif,snmsung galaxy watch 4 is a watch,22000,30,True,3,2
+8,18,mi remote,images (3).jfif,mi remote is a remote,2000,22,True,5,2
+9,19,Men's Regular Fit T-Shirt,fashion.jpg,clothes,270,29,True,6,1
+10,21,gamer sweatshirt,download (4)_cIUwQng.jfif,gamer sweatshirt,1000,18,True,6,3

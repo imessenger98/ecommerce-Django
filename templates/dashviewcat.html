@@ -1,0 +1,46 @@
+{% extends 'dasboardindex.html' %}
+{% block content %}
+{% load static %}
+<div  class="container" >
+    <div class="row justify-content-center align-items-center text-center"  style="width: 100%;height: 100%;">
+
+      <table style="color: white !important; " class="table table-dark">
+        <h2 style="padding-top: 30px;padding-bottom: 30px;" class="display-5 text-center"><u>Category Detials</u> </h2>
+          
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">discription</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+
+
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in category %}
+              
+              <tr>
+                <td>
+                  {{i.id}}
+              </td>
+                <td>
+                    {{i.Category_Name}}
+                </td>
+                <td>
+                    {{i.Category_Discription}}
+                </td>
+                <td>
+                  <a style="text-decoration: none; color: white;" href="{% url 'updatecat' userid=i.id %}"><i style="color: rgb(255, 255, 255);" class="fa fa-pencil" aria-hidden="true"></i> &nbsp; Update</a>
+                </td>
+                <td>
+                  <a style="text-decoration: none; color: white;" href="{% url 'deletedata' userid=i.id %}"><i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i>&nbsp; Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br>
+         <div>{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'dasboardindex.html' %}
+{% block content %}
+<div class="col-12">
+    <h2 style="padding-top: 30px;padding-bottom: 30px;" class="display-5 text-center"><u>Order Detials</u> </h2>
+
+  </div>
+
+  <table   class="table table-dark ">
+    
+        </div>
+        <thead>
+          <br>
+          <tr>
+            <th scope="col">product_id</th>
+            <th scope="col">product_qty</th>
+            <th scope="col">product_price</th>
+            <th scope="col">subtotal</th>
+            <th scope="col">order</th>
+          
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in key %}
+          
+          <tr>
+            <td>
+              {{i.product_id}}
+          </td>
+            <td>
+                {{i.product_qty}}
+            </td>
+            <td>
+                {{i.product_price}}
+            </td>
+            <td>
+                {{i.subtotal}}
+            </td>
+            <td>
+              {{i.order}}
+          </td>
+           
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+     <div>
+         <style>
+             .darkcol,table th,table td{
+                 color: white !important;
+                 background-color: black;
+             }
+         </style>
+{% endblock %}
