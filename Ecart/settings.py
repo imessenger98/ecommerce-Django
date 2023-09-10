@@ -23,9 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dfs-@rbg@ps8-_6#chx0^#xh!i04=yy_onstsjy!-9a(v!4yni'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = false
 
 
 # Application definition
@@ -132,8 +130,7 @@ MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ALLOWED_HOSTS = ['0.0.0.0']
-
+ALLOWED_HOSTS = ['ecommerce-web-y13p.onrender.com','0.0.0.0']
 AUTH_USER_MODEL = 'Products.User'
 
 STATICFILES_DIRS = [
