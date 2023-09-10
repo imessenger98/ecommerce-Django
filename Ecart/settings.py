@@ -131,7 +131,7 @@ MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ALLOWED_HOSTS = ['ecommerce-web-y13p.onrender.com','0.0.0.0']
 AUTH_USER_MODEL = 'Products.User'
-
+CSRF_TRUSTED_ORIGINS =  ['ecommerce-web-y13p.onrender.com','0.0.0.0']
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
